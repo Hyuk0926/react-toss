@@ -5,8 +5,8 @@ import WonLogo from '~/components/svg/won-logo.svg?react';
 
 export default function TransformService() {
   return (
-    <section className="h-[2311px]">
-      <div className="container h-full bg-white py-[250px]">
+    <section className="h-[2311px] bg-[#f9fafb]">
+      <div className="container h-full pt-[250px]">
         <InDropUp y={100} mb={-50} duration={0.8}>
           <div className="mb-[80px]">
             <h2 className="mb-[30px] text-[28px] leading-[1.3] font-[700] text-[#3182f6]">
