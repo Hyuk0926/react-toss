@@ -1,6 +1,7 @@
 import Description from './description';
 import Hero from './hero';
 import HomeService from './home-service';
+import LoanService from './loan-service';
 import TransformService from './transform-service';
 
 export default function Home() {
@@ -10,6 +11,7 @@ export default function Home() {
       <Description />
       <HomeService />
       <TransformService />
+      <LoanService />
     </>
   );
 }
