@@ -55,7 +55,7 @@ export default function LoanService() {
                 부담은 <span className="text-[#d1d6db]">적게</span>,
               </motion.h2>
             </div>
-            <InDropUp y={100} mb={-50} duration={0.8}>
+            <InDropUp y={100} mb={0} duration={0.8}>
               <p className="text-[23px] leading-[1.5] font-[600]">
                 앉은 자리에서 여러 은행의 한도와 금리를 비교하고
                 <br />
