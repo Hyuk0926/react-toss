@@ -11,12 +11,12 @@ export default function LoanService() {
   });
 
   return (
-    <section>
+    <section className="mb-[100px]">
       <div className="container flex">
         <div className="flex-1">
           <InDropUp y={100} mb={-50} duration={0.8}>
-            <div className="mb-[210px]">
-              <h1 className="leading-1.3 mb-[20px] text-[28px] font-[700] text-[#3182f6]">
+            <div className="mb-[110px]">
+              <h1 className="leading-1.3 mt-[20px] mb-[20px] text-[28px] font-[700] text-[#3182f6]">
                 대출
               </h1>
               <p className="text-[50px] leading-[1.4] font-[700] text-[#191f28]">

@@ -2,6 +2,7 @@ import CreditService from './credit-service';
 import Description from './description';
 import Hero from './hero';
 import HomeService from './home-service';
+import InvestService from './invest-service';
 import LoanService from './loan-service';
 import TransformService from './transform-service';
 
@@ -14,6 +15,7 @@ export default function Home() {
       <TransformService />
       <LoanService />
       <CreditService />
+      <InvestService />
     </>
   );
 }
