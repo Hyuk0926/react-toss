@@ -8,16 +8,13 @@ export default function FinanceIntro() {
     offset: ['start end', 'end start'],
   });
 
-  // 왼쪽 커튼: 0% → -100% (왼쪽으로 사라짐)
   const leftX = useTransform(scrollYProgress, [0, 0.5], ['0%', '-100%']);
-
-  // 오른쪽 커튼: 0% → +100% (오른쪽으로 사라짐)
   const rightX = useTransform(scrollYProgress, [0, 0.5], ['0%', '100%']);
 
   return (
     <section
       ref={ref}
-      className="relative h-[800px] overflow-hidden bg-[url('/images/finance-bg.jpg')] bg-cover bg-center"
+      className="relative h-[800px] bg-[url('/images/finance-bg.jpg')] bg-cover bg-center"
     >
       <motion.div
         className="absolute top-0 left-0 z-20 h-full w-1/4 bg-white"
