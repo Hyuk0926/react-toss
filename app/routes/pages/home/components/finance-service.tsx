@@ -4,14 +4,21 @@ import { useRef } from 'react';
 import ScrollOpacity from '~/components/animation/scroll-opacity';
 
 export default function FinanceService() {
-  const ref = useRef(null);
+  const sectionRef = useRef(null);
   const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start start', 'end end'], // offset을 추가하여 부드럽게 조정
+    target: sectionRef,
+    offset: ['start start', 'end end'],
+  });
+
+  // finance-01 이미지 전용 스크롤 감지
+  const finance01Ref = useRef(null);
+  const { scrollYProgress: finance01ScrollY } = useScroll({
+    target: finance01Ref,
+    offset: ['start end', 'end start'],
   });
 
   return (
-    <section className="h-[4232px]" ref={ref}>
+    <section className="h-[4232px]" ref={sectionRef}>
       <div className="relative container pt-[250px]">
         <h1 className="mb-[140px] text-[60px] leading-[1.4] font-[700] text-[#191f28]">
           금융을 넘어
@@ -19,11 +26,12 @@ export default function FinanceService() {
           일상을 더 편리하게
         </h1>
 
-        <div className="mb-[210px]">
+        {/* 첫 번째 영역 */}
+        <div className="mb-[210px]" ref={finance01Ref}>
           <ScrollOpacity
-            scrollYProgress={scrollYProgress}
+            scrollYProgress={finance01ScrollY}
             startScrollY={0}
-            endScrollY={0.015}
+            endScrollY={1}
           >
             <img
               src="/images/finance-01.jpg"
@@ -31,10 +39,11 @@ export default function FinanceService() {
               className="mx-auto mb-[60px] w-[740px]"
             />
           </ScrollOpacity>
+
           <ScrollOpacity
-            scrollYProgress={scrollYProgress}
-            startScrollY={0.015}
-            endScrollY={0.025}
+            scrollYProgress={finance01ScrollY}
+            startScrollY={0.2}
+            endScrollY={1}
           >
             <h2 className="mb-[24px] text-[40px] leading-[1.3] font-[700] text-[#191f28]">
               세금 납부, 등본 발급까지
@@ -51,7 +60,7 @@ export default function FinanceService() {
           </ScrollOpacity>
         </div>
 
-        {/* 두번째 영역 */}
+        {/* 두 번째 영역 */}
         <div className="mb-[220px] flex gap-[40px]">
           <div>
             <ScrollOpacity
@@ -109,7 +118,7 @@ export default function FinanceService() {
           </div>
         </div>
 
-        {/* 세번째 영역 */}
+        {/* 세 번째 영역 */}
         <div>
           <ScrollOpacity
             scrollYProgress={scrollYProgress}

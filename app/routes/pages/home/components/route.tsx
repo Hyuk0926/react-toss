@@ -6,6 +6,7 @@ import Hero from './hero';
 import HomeService from './home-service';
 import InvestService from './invest-service';
 import LoanService from './loan-service';
+import PaymentService from './payment-service';
 import TransformService from './transform-service';
 
 export default function Home() {
@@ -20,6 +21,7 @@ export default function Home() {
       <InvestService />
       <FinanceIntro />
       <FinanceService />
+      <PaymentService />
     </>
   );
 }
