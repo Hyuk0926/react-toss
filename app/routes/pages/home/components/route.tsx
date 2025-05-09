@@ -1,3 +1,5 @@
+import BusinessCall from './business-call';
+import BusinessService from './business-service';
 import CreditService from './credit-service';
 import Description from './description';
 import FinanceIntro from './finance-intro';
@@ -22,6 +24,8 @@ export default function Home() {
       <FinanceIntro />
       <FinanceService />
       <PaymentService />
+      <BusinessService />
+      <BusinessCall />
     </>
   );
 }
