@@ -6,6 +6,7 @@ export default [
   layout('routes/layouts/default-layout.tsx', [
     index('routes/pages/home/components/route.tsx'),
     route('notice', 'routes/pages/notice/route.tsx'),
+    route('notice/:id', 'routes/pages/notice/notice-details/route.tsx'),
   ]),
 
   // * APIs
