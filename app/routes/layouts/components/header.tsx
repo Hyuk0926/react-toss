@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import { Link } from 'react-router';
 
 import LangButton from './lang-button';
-import NavButton from './nav-button';
 import TossLogo from './svg/toss-logo.svg?react';
 
 interface NavItem {
@@ -10,8 +10,8 @@ interface NavItem {
 }
 
 const MENU: NavItem[] = [
-  { to: '#', label: '회사소개' },
-  { to: '#', label: '공지사항' },
+  { to: '/', label: '회사소개' },
+  { to: '/notice', label: '공지사항' },
   { to: '#', label: '고객센터' },
   { to: '#', label: '자주묻는질문' },
   { to: '#', label: '토스인증서' },
@@ -24,14 +24,22 @@ export default function Header() {
   return (
     <header className="fixed z-50 h-[60px] w-full bg-white">
       <div className="container flex h-full items-center justify-between">
-        <div className="w-[66px]">
+        <Link to="/home" className="w-[66px]">
           <TossLogo />
-        </div>
+        </Link>
 
-        {/* ✅ nav 부분은 그대로 유지 */}
-        <nav className="flex gap-4">
+        {/* 메뉴 네비게이션 */}
+        <nav className="flex gap-6">
+          {' '}
+          {/* gap 수치를 늘려줌 */}
           {MENU.map((item, i) => (
-            <NavButton key={i}>{item.label}</NavButton>
+            <Link
+              key={i}
+              to={item.to}
+              className="px-3 py-2 text-sm text-gray-700 transition-colors hover:text-black"
+            >
+              {item.label}
+            </Link>
           ))}
         </nav>
 
