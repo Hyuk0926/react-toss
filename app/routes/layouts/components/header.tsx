@@ -24,7 +24,7 @@ export default function Header() {
   return (
     <header className="fixed z-50 h-[60px] w-full bg-white">
       <div className="container flex h-full items-center justify-between">
-        <Link to="/home" className="w-[66px]">
+        <Link to="/" className="w-[66px]">
           <TossLogo />
         </Link>
 
