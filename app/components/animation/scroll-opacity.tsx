@@ -15,11 +15,10 @@ export default function ScrollOpacity({
   startScrollY,
   endScrollY,
 }: Props) {
-  const opacity = useTransform(scrollYProgress, [startScrollY, endScrollY], [0, 1]);
-  const y = useTransform(scrollYProgress, [startScrollY, endScrollY], [30, 0]); // 아래에서 올라오는 효과
+  const opacity = useTransform(scrollYProgress, [startScrollY, endScrollY], [0.4, 1]);
 
   return (
-    <motion.div className={className} style={{ opacity, y }}>
+    <motion.div className={className} style={{ opacity }}>
       {children}
     </motion.div>
   );

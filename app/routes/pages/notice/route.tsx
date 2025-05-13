@@ -1,41 +1,34 @@
-import { Link } from 'react-router';
+import { Link, type LoaderFunctionArgs } from 'react-router';
 
+import prisma from '~/.server/lib/prisma';
+
+import type { Route } from '../notice/+types/route';
 import NoticeItem from './components/notice-item';
-import NoticePagination from './components/pagination';
+import NoticePagination from './components/notice-pagination';
 
-interface Notice {
-  id: string;
-  title: string;
-  content: string;
-  createdAt: Date;
-  updatedAt: Date;
-}
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+  const url = new URL(request.url);
+  const query = Object.fromEntries(url.searchParams);
+  let page = parseInt(query.page);
+  if (!page) page = 1;
 
-export const NOTICE: Notice[] = [
-  {
-    id: '1',
-    title: '공지사항 제목1',
-    content: '공지사항 내용1',
-    createdAt: new Date('2025-05-12'),
-    updatedAt: new Date('2025-05-12'),
-  },
-  {
-    id: '2',
-    title: '공지사항 제목2',
-    content: '공지사항 내용2',
-    createdAt: new Date('2025-05-11'),
-    updatedAt: new Date('2025-05-11'),
-  },
-  {
-    id: '3',
-    title: '공지사항 제목3',
-    content: '공지사항 내용3',
-    createdAt: new Date('2025-05-10'),
-    updatedAt: new Date('2025-05-10'),
-  },
-];
+  const [notices, totalCount] = await Promise.all([
+    prisma.notice.findMany({
+      take: 10,
+      skip: (page - 1) * 10,
+      orderBy: {
+        createdAt: 'desc',
+      },
+    }),
+    prisma.notice.count(),
+  ]);
 
-export default function Notice() {
+  return { notices, totalCount, page };
+};
+
+export default function Notice({ loaderData }: Route.ComponentProps) {
+  const { notices, totalCount, page } = loaderData;
+
   return (
     <section>
       <div className="container">
@@ -43,19 +36,18 @@ export default function Notice() {
           공지사항
         </h1>
         <div>
-          {NOTICE.map((notice, index) => (
+          {notices.map((notice, index) => (
             <Link to={`/notice/${notice.id}`} key={index}>
               <NoticeItem
-                key={index}
                 title={notice.title}
-                createdAt={notice.createdAt.toISOString()}
-                isLast={index === NOTICE.length - 1}
+                createdAt={notice.createdAt}
+                isLast={index === notices.length - 1}
               />
             </Link>
           ))}
         </div>
         <div className="pt-[50px]">
-          <NoticePagination />
+          <NoticePagination totalCount={totalCount} page={page} />
         </div>
       </div>
     </section>

@@ -13,8 +13,8 @@ export default function LangButton({ language, setLanguage, value, children }: P
     <Button
       variant="ghost"
       className={cn(
-        'px-[10px] text-[15px] leading-[1.5] font-[500]',
-        language === value ? 'text-[rgb(78,89,104)]' : 'text-[#d1d6db]',
+        'px-[10px] text-[15px] leading-[1.5] font-[500] text-[#d1d6db]',
+        language === value ? 'text-[rgb(78, 89, 104)]' : '',
       )}
       onClick={() => setLanguage(value)}
     >

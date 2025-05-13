@@ -97,10 +97,15 @@
 }
 
 .hero-shadow {
-  background: linear-gradient(180deg, white 0%, white 59px, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(180deg, white 0%, white 59px, rgba(225, 255, 225, 0) 100%);
 }
 
-.hover-icon {
+.hover-deco:hover {
+  color: #1b64da;
+  text-decoration: underline;
+}
+
+.hover-icon:hover {
   opacity: 1;
-  transition: opacity 0.5s;
+  transition: 0.5s;
 }

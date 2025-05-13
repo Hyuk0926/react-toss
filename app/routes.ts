@@ -4,14 +4,15 @@ import { index, layout, prefix, route, type RouteConfig } from '@react-router/de
 export default [
   // * Pages
   layout('routes/layouts/default-layout.tsx', [
-    index('routes/pages/home/components/route.tsx'),
+    index('routes/pages/home/route.tsx'),
     route('notice', 'routes/pages/notice/route.tsx'),
-    route('notice/:id', 'routes/pages/notice/notice-details/route.tsx'),
+    route('notice/:id', 'routes/pages/notice-details/route.tsx'),
   ]),
 
   // * APIs
   ...prefix('api', [
     route('theme', 'routes/apis/theme.ts'),
     route('language', 'routes/apis/language.ts'),
+    route('notice', 'routes/apis/notice.ts'),
   ]),
 ] satisfies RouteConfig;
