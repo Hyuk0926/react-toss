@@ -1,7 +1,12 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 
+import Hamburger from '~/components/svg/hamburger.svg?react';
 import TossLogo from '~/components/svg/toss-logo.svg?react';
+import { Button } from '~/components/ui/button';
 import { useLanguage } from '~/hooks/use-language';
+import useMediaQuery, { MediaQuery } from '~/hooks/use-media-query';
+import { cn } from '~/lib/utils';
 
 import LangButton from './lang-button';
 import NavButton from './nav-button';
@@ -40,29 +45,65 @@ const MENU: NavItem[] = [
 
 export default function Header() {
   const [language, setLanguage] = useLanguage();
+  const isMobile = useMediaQuery(MediaQuery.MOBILE);
+
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // 초기 상태도 적용
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  // ? Debug
+  useEffect(() => {
+    console.log('isMobile', isMobile);
+  }, [isMobile]);
 
   return (
-    <header className="fixed z-50 h-[60px] w-full bg-white">
+    <header
+      className={cn('fixed z-50 h-[60px] w-full bg-white', scrolled && 'shadow-md')}
+    >
       <div className="container flex h-full items-center justify-between">
         <Link to="/" className="w-[66px]">
           <TossLogo />
         </Link>
-        <nav className="flex gap-4">
-          {MENU.map((item, i) => (
-            <Link to={item.to} key={i}>
-              <NavButton>{item.label}</NavButton>
-            </Link>
-          ))}
-        </nav>
-        <div>
-          <LangButton language={language} setLanguage={setLanguage} value="ko">
-            KOR
-          </LangButton>
-          <span className="text-[#d1d6db]">|</span>
-          <LangButton language={language} setLanguage={setLanguage} value="en">
-            ENG
-          </LangButton>
-        </div>
+        {isMobile ? (
+          <div>
+            <Button>앱 다운로드</Button>
+            <Button variant="ghost">
+              <Hamburger className="h-6 w-6" />
+            </Button>
+          </div>
+        ) : (
+          <>
+            <nav className="flex gap-4">
+              {MENU.map((item, i) => (
+                <Link to={item.to} key={i}>
+                  <NavButton>{item.label}</NavButton>
+                </Link>
+              ))}
+            </nav>
+            <div>
+              <LangButton language={language} setLanguage={setLanguage} value="ko">
+                KOR
+              </LangButton>
+              <span className="text-[#d1d6db]">|</span>
+              <LangButton language={language} setLanguage={setLanguage} value="en">
+                ENG
+              </LangButton>
+            </div>
+          </>
+        )}
       </div>
     </header>
   );
