@@ -20,8 +20,8 @@ export default function LoanService() {
           {/* 텍스트 */}
           <InDropUp y={100} mb={-50} duration={0.8}>
             <div className="text-left">
-              <h1 className="mb-[12px] text-[24px] font-bold text-[#3182f6]">대출</h1>
-              <p className="text-[36px] leading-snug font-bold text-[#191f28]">
+              <h1 className="mb-[12px] text-[20px] font-bold text-[#3182f6]">대출</h1>
+              <p className="text-[30px] leading-snug font-bold text-[#191f28]">
                 여러 은행의 조건을
                 <br />
                 1분 만에
