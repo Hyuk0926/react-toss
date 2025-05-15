@@ -48,22 +48,21 @@ export default function TransformService() {
                 <img
                   src="/images/kimtoss.png"
                   alt="kimtoss"
-                  className="w-full max-w-[500px]"
+                  className="w-full max-w-[300px]"
                 />
               </InDropUp>
             </div>
-
-            {/* 사기 계좌 조회 */}
             <div className="mb-[60px] flex flex-col items-center px-4">
               <InDropUp y={100} mb={-50} duration={0.8}>
                 <img
                   src="/images/alert-service.png"
                   alt="alert-service"
-                  className="w-full max-w-[500px]"
+                  className="w-full max-w-[300px]"
                 />
               </InDropUp>
+              {/* 사기 계좌 조회 */}
               <InDropUp y={100} mb={-50} duration={0.8}>
-                <div className="mt-4 w-full max-w-[500px]">
+                <div className="mt-4 w-full max-w-[500px] pt-[30px]">
                   <h2 className="flex items-center gap-2 text-[15px] font-semibold text-[#3182f6]">
                     <div className="h-[24px] w-[24px]">
                       <Shield />

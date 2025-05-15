@@ -49,7 +49,7 @@ export default function HomeService() {
 
               {/* 이미지 2 */}
               <InDropUp y={150} mb={-100} duration={0.8}>
-                <motion.div className="relative h-[300px] w-[150px]">
+                <motion.div className="relative h-[300px] w-[150px]" style={{ right }}>
                   <img
                     className="absolute top-[26px] left-[32px] w-[85px]"
                     src="/images/home-service-2.png"
