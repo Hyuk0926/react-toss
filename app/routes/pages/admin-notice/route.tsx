@@ -31,11 +31,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     prisma.notice.count(),
   ]);
 
-  return {
-    notices,
-    totalCount,
-    page,
-  };
+  return { notices, totalCount, page };
 };
 
 export const handle = {
@@ -44,6 +40,7 @@ export const handle = {
 
 export default function AdminNotice({ loaderData }: Route.ComponentProps) {
   const { notices, totalCount, page } = loaderData;
+
   return (
     <div>
       <NoticeTable notices={notices} totalCount={totalCount} page={page} />
