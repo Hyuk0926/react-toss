@@ -6,6 +6,7 @@ import { BreadcrumbItem } from '~/components/ui/breadcrumb';
 import { SortOrder } from '~/generated/prisma/internal/prismaNamespace';
 
 import type { Route } from '../admin-notice/+types/route';
+import NoticePagination from './components/notice-pagination';
 import { NoticeTable } from './components/notice-table';
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
@@ -18,7 +19,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   const url = new URL(request.url);
   const query = Object.fromEntries(url.searchParams);
   let page = parseInt(query.page);
-  if (!page) page = 1;
+  if (isNaN(page) || !page) page = 1;
   let sort = query.sort as SortOrder;
   if (!sort) sort = SortOrder.desc;
 
@@ -49,6 +50,9 @@ export default function AdminNotice({ loaderData }: Route.ComponentProps) {
   return (
     <div>
       <NoticeTable notices={notices} totalCount={totalCount} page={page} />
+      <div className="mt-8">
+        <NoticePagination totalCount={totalCount} page={page} />
+      </div>
     </div>
   );
 }
