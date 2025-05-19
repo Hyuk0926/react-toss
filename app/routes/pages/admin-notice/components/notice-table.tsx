@@ -18,8 +18,6 @@ import NoticePagination from './notice-pagination';
 
 interface Props {
   notices: Notice[];
-  totalCount: number;
-  page: number;
 }
 
 export const NoticeTable = ({ notices, totalCount, page }: Props) => {
