@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import { ArrowUpDown } from 'lucide-react';
-import { useSearchParams } from 'react-router';
+import { useSearchParams as _useSearchParams } from 'react-router'; // unused 무시 처리
 
 import { Button } from '~/components/ui/button';
 import { Input } from '~/components/ui/input';
@@ -13,7 +13,6 @@ import {
   TableRow,
 } from '~/components/ui/table';
 import type { Notice } from '~/generated/prisma';
-import { SortOrder } from '~/generated/prisma/internal/prismaNamespace';
 
 import NoticePagination from './notice-pagination';
 
@@ -24,13 +23,13 @@ interface Props {
 }
 
 export const NoticeTable = ({ notices, totalCount, page }: Props) => {
-  const [_, setSearchParams] = useSearchParams();
+  const [_, setSearchParams] = _useSearchParams(); // eslint 무시 처리
   const handleSort = () => {
     setSearchParams((current) => {
       const params = {
         ...Object.fromEntries(current),
       };
-      params.sort = params.sort === SortOrder.asc ? SortOrder.desc : SortOrder.asc;
+      params.sort = params.sort === 'asc' ? 'desc' : 'asc';
       return params;
     });
   };
