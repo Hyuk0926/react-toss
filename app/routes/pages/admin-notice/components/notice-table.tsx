@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import { ArrowUpDown } from 'lucide-react';
-import { useSearchParams as _useSearchParams } from 'react-router'; // unused 무시 처리
+import { useSearchParams } from 'react-router'; // 수정: Link와 동일한 출처
+import { Link } from 'react-router'; // 추가
 
 import { Button } from '~/components/ui/button';
 import { Input } from '~/components/ui/input';
@@ -18,10 +19,12 @@ import NoticePagination from './notice-pagination';
 
 interface Props {
   notices: Notice[];
+  totalCount: number;
+  page: number;
 }
 
 export const NoticeTable = ({ notices, totalCount, page }: Props) => {
-  const [_, setSearchParams] = _useSearchParams(); // eslint 무시 처리
+  const [_, setSearchParams] = useSearchParams(); // 오타 수정
   const handleSort = () => {
     setSearchParams((current) => {
       const params = {
@@ -56,7 +59,11 @@ export const NoticeTable = ({ notices, totalCount, page }: Props) => {
           {notices.map((notice) => (
             <TableRow key={notice.id}>
               <TableCell>{notice.id}</TableCell>
-              <TableCell>{notice.title}</TableCell>
+              <TableCell>
+                <Link to={`/admin/notice/${notice.id}`} className="hover:underline">
+                  {notice.title}
+                </Link>
+              </TableCell>
               <TableCell>
                 {dayjs(notice.createdAt).format('YYYY.MM.DD HH:mm:ss')}
               </TableCell>
