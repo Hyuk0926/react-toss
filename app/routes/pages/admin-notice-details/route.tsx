@@ -6,7 +6,7 @@ import { BreadcrumbItem } from '~/components/ui/breadcrumb';
 import { Button } from '~/components/ui/button';
 import { Separator } from '~/components/ui/separator';
 
-import type { Route } from '../admin-notice-details/+types/route';
+// Removed broken import for Route type
 
 export const loader = async ({ params }) => {
   const { id } = params;
@@ -28,7 +28,21 @@ export const handle = {
   breadcrumb: () => <BreadcrumbItem>공지사항 관리 / 상세</BreadcrumbItem>,
 };
 
-export default function AdminNoticeDetails({ loaderData }: Route.ComponentProps) {
+type Notice = {
+  id: number;
+  title: string;
+  content: string;
+  createdAt: string | Date;
+  updatedAt: string | Date;
+};
+
+type AdminNoticeDetailsProps = {
+  loaderData: {
+    notice: Notice;
+  };
+};
+
+export default function AdminNoticeDetails({ loaderData }: AdminNoticeDetailsProps) {
   const { notice } = loaderData;
   const navigate = useNavigate();
 
@@ -41,7 +55,7 @@ export default function AdminNoticeDetails({ loaderData }: Route.ComponentProps)
       </div>
       <Separator />
       <div className="pt-[40px] text-[16px] leading-[25.6px] font-[400]">
-        {notice.content.split('\n').map((line, index) => (
+        {notice.content.split('\n').map((line: string, index: number) => (
           <p key={index} className="block pb-[10px]">
             {line}
           </p>
