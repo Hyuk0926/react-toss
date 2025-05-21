@@ -1,10 +1,7 @@
 import dayjs from 'dayjs';
 import { ArrowUpDown } from 'lucide-react';
-import { useSearchParams } from 'react-router'; // 수정: Link와 동일한 출처
-import { Link } from 'react-router'; // 추가
+import { Link, useSearchParams } from 'react-router';
 
-import { Button } from '~/components/ui/button';
-import { Input } from '~/components/ui/input';
 import {
   Table,
   TableBody,
@@ -15,16 +12,12 @@ import {
 } from '~/components/ui/table';
 import type { Notice } from '~/generated/prisma';
 
-import NoticePagination from './notice-pagination';
-
 interface Props {
   notices: Notice[];
-  totalCount: number;
-  page: number;
 }
 
-export const NoticeTable = ({ notices, totalCount, page }: Props) => {
-  const [_, setSearchParams] = useSearchParams(); // 오타 수정
+export const NoticeTable = ({ notices }: Props) => {
+  const [_, setSearchParams] = useSearchParams();
   const handleSort = () => {
     setSearchParams((current) => {
       const params = {
@@ -37,10 +30,6 @@ export const NoticeTable = ({ notices, totalCount, page }: Props) => {
 
   return (
     <div>
-      <div className="mb-8 flex items-center justify-between">
-        <Input className="w-100" placeholder="공지사항 제목으로 검색..." />
-        <Button>새 공지사항 등록</Button>
-      </div>
       <Table>
         <TableHeader>
           <TableRow>
@@ -74,9 +63,6 @@ export const NoticeTable = ({ notices, totalCount, page }: Props) => {
           ))}
         </TableBody>
       </Table>
-      <div className="mt-8">
-        <NoticePagination totalCount={totalCount} page={page} />
-      </div>
     </div>
   );
 };

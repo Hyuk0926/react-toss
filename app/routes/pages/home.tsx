@@ -11,7 +11,14 @@ import { Label } from '~/components/ui/label';
 import { useLanguage } from '~/hooks/use-language';
 import { useTheme } from '~/hooks/use-theme';
 
-import type { Route } from './+types/home';
+// Define the Route type inline since './+types/home' is missing
+type Route = {
+  ComponentProps: {
+    loaderData: {
+      t: WelcomeJson;
+    };
+  };
+};
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const t = await localize<WelcomeJson>(request, 'welcome');
