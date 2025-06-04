@@ -64,11 +64,6 @@ export default function Header() {
     };
   }, []);
 
-  // ? Debug
-  useEffect(() => {
-    console.log('isMobile', isMobile);
-  }, [isMobile]);
-
   return (
     <header
       className={cn('fixed z-50 h-[60px] w-full bg-white', scrolled && 'shadow-md')}

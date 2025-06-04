@@ -15,7 +15,7 @@ import { useTheme } from '~/hooks/use-theme';
 type Route = {
   ComponentProps: {
     loaderData: {
-      t: WelcomeJson;
+      t: import('~/.server/locales/types').CommonJson & WelcomeJson;
     };
   };
 };
@@ -30,7 +30,7 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
   return [{ title: t.meta.title }, { name: 'description', content: t.meta.description }];
 };
 
-export default function Home({ loaderData }: Route.ComponentProps) {
+export default function Home({ loaderData }: Route['ComponentProps']) {
   const { t } = loaderData;
   const [language, setLanguage] = useLanguage();
   const [theme, setTheme] = useTheme();

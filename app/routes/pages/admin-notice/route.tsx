@@ -59,7 +59,7 @@ export default function AdminNotice({ loaderData }: Route.ComponentProps) {
           <Button>새 공지사항 등록</Button>
         </Link>
       </div>
-      <NoticeTable notices={notices} totalCount={totalCount} page={page} />
+      <NoticeTable notices={notices} />
       <div className="mt-8">
         <NoticePagination totalCount={totalCount} page={page} />
       </div>
